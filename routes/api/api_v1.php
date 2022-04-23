@@ -35,7 +35,12 @@ Route::group([
 Route::group([
    'prefix' => 'users',
 ], function() {
-    Route::middleware('auth:sanctum')->get('/me', [UsersController::class, 'getCurrentUser']);
+    Route::group([
+        'middleware' => 'auth:sanctum'
+    ], function() {
+        Route::get('/', [UsersController::class, 'getCurrentUser']);
+        Route::put('/', [UsersController::class, 'update']);
+    });
     Route::get('/{username}', [UsersController::class, 'getUser']);
 });
 
@@ -45,11 +50,6 @@ Route::group([
     Route::get('/primary', [ServicesController::class, 'getPrimaryServices']);
     Route::get('/', [ServicesController::class, 'getAllServices']);
     Route::get('/{service}', [SubServicesController::class, 'getByService']);
-//    Route::group([
-//        'middleware' => 'auth:sanctum'
-//    ], function() {
-//        Route::post('/', [ServicesController::class, 'createService']);
-//    });
 });
 
 Route::group([

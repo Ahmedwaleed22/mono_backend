@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use function response;
 
 class AuthController extends Controller
@@ -23,6 +24,7 @@ class AuthController extends Controller
             'username' => 'required|string|max:255|unique:users,name',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
+            'avatar' => 'mimes:png,jpg,jpeg',
             'birth_date' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'phone_number' => 'required|string|max:255',
@@ -47,6 +49,19 @@ class AuthController extends Controller
         $user->profession = $request->profession;
         $user->account_type = $request->account_type;
         $user->password = Hash::make($request->password);
+
+        if ($request->hasFile('avatar')) {
+            // Storing File in Amazon s3
+            $file = $request->file('avatar');
+            $fileExtension = $file->getClientOriginalExtension();
+            $fileName = Str::random(32) . '.' . $fileExtension;
+            $file->storeAs('user_avatars/', $fileName, 's3');
+
+            $fileLocation = 'https://'. env('AWS_BUCKET') . '.' . 's3' . '.' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/user_avatars/' . $fileName;
+
+            $user->avatar = $fileLocation;
+        }
+
         $user->save();
 
         if ($request->account_type === "client") {
