@@ -25,7 +25,6 @@ class SubServiceFactory extends Factory
             'image' => $this->faker->jobTitle,
             'description' => $this->faker->realText,
             'search_tags' => $jobTitle . ',' . $jobTitle . ',' . $jobTitle,
-            'rate' => $this->faker->randomElement(['service', 'hourly']),
             'min_price' => $this->faker->randomFloat(2, 1, 100),
             'max_price' => $this->faker->randomFloat(2, 1, 100),
             'currency' => $this->faker->currencyCode,
