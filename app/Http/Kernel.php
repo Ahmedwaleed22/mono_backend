@@ -24,6 +24,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\Cors::class,
         \App\Http\Middleware\ForceJSON::class,
+        \App\Http\Middleware\Localization::class,
     ];
 
     /**
@@ -68,6 +69,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'cors' => \App\Http\Middleware\Cors::class,
         'forceJSON' => \App\Http\Middleware\ForceJSON::class,
-        'admin' => Admin::class
+        'admin' => Admin::class,
+        'localization' => \App\Http\Middleware\Localization::class,
     ];
 }

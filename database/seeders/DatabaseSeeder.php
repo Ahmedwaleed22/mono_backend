@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleSeeder::class);
         $this->call(ServiceSeeder::class);
-        \App\Models\User::factory(100)->create();
-        \App\Models\Service::factory(100)->create();
-        \App\Models\SubService::factory(100)->create();
+//        \App\Models\User::factory(100)->create();
+//        \App\Models\Service::factory(100)->create();
+//        \App\Models\SubService::factory(100)->create();
     }
 }

@@ -30,7 +30,7 @@ class WithdrawsController extends Controller
 
         if ($funds < $request->amount) {
             return response()->json([
-                'error' => 'Your account funds are less than the amount requested for withdrawal.'
+                'error' => trans('withdraw.low_funds')
             ], 402);
         }
 

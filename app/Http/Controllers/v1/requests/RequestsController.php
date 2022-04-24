@@ -26,13 +26,13 @@ class RequestsController extends Controller
 
         if (!($request->funds >= $service->min_price)) {
             return response()->json([
-                'error' => 'Not enough funds.'
+                'error' => trans('requests.not_enough_funds')
             ], 402);
         }
 
         if (!($user->funds >= $service->min_price)) {
             return response()->json([
-                'error' => 'Please add funds to your account to continue this request.'
+                'error' => trans('requests.add_funds')
             ], 402);
         }
 

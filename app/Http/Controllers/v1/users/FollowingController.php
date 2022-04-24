@@ -21,12 +21,12 @@ class FollowingController extends Controller
 
         if (count($follow['attached']) > 0) {
             return response()->json([
-                'message' => 'Successfully followed user.'
+                'message' => trans('follow.followed')
             ], 201);
         }
 
         return response()->json([
-            'message' => 'Already following user.'
+            'message' => trans('follow.already_following')
         ], 409);
     }
 
@@ -36,12 +36,12 @@ class FollowingController extends Controller
 
         if ($follow) {
             return response()->json([
-                'message' => 'Successfully unfollowed user.'
+                'message' => trans('follow.unfollowed')
             ], 200);
         }
 
         return response()->json([
-            'message' => 'Not following user.'
+            'message' => trans('follow.not_following')
         ], 409);
     }
 }

@@ -33,12 +33,12 @@ class ForgetPasswordController extends Controller
         if ($this->sendResetEmail($user->email, $token)) {
             return response()->json([
                 'success' => true,
-                'message' => 'A reset link has been sent to your email address.'
+                'message' => trans('passwords.sent')
             ]);
         } else {
             return response()->json([
                 'success' => false,
-                'error' => 'Couldn\'t send email.'
+                'error' => trans('emails.failed')
             ], 500);
         }
     }

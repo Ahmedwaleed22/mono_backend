@@ -37,7 +37,7 @@ class ProjectsController extends Controller
 
         if ($serviceRequest->client_id != $user->id) {
             return response()->json([
-                'error' => 'Only request client can do this action.'
+                'error' => trans('projects.request_client_only')
             ], 403);
         }
 
@@ -54,7 +54,7 @@ class ProjectsController extends Controller
                     $file_locations[] = $fileLocation;
                 } else {
                     return response()->json([
-                        'error' => 'File type is not accepted, We only accept png, jpg, jpeg.'
+                        'error' => trans('projects.file_type_not_accepted')
                     ], 415);
                 }
             }
@@ -84,7 +84,7 @@ class ProjectsController extends Controller
             $projectLike->delete();
 
             return response()->json([
-              'message' => 'Unliked project successfully.'
+              'message' => trans('projects.unliked_project')
             ]);
         }
 
