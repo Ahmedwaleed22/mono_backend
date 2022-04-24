@@ -14,7 +14,9 @@
 
 5. `php artisan migrate`
 
-6. `php artisan serve` _If you are looking to use the Laravel server for testing purposes or local installation_
+6. `php artisan db:seed`
+
+7. `php artisan serve` _If you are looking to use the Laravel server for testing purposes or local installation_
 
 <hr>
 
