@@ -58,7 +58,7 @@ class ChatController extends Controller
         $message->chat_room_id = $roomID;
         $message->save();
 
-        broadcast(new NewChatMessage($message))->toOthers();
+        broadcast(new NewChatMessage($message));
 
         return response()->json($message);
     }

@@ -18,6 +18,12 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-Broadcast::channel('private-chat.{roomID}', function ($user, $roomID) {
-    return true;
+Broadcast::channel('chat.{roomID}', function ($user, $roomID) {
+    $chatRoom = \App\Models\ChatRoom::with('serviceRequest')->where('id', $roomID)->first();
+
+    if ($chatRoom->serviceRequest()->client_id == $user->id || $chatRoom->serviceRequest()->worker_id == $user->id) {
+        return true;
+    }
+
+    return false;
 });
