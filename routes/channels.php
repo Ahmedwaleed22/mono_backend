@@ -19,11 +19,5 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 });
 
 Broadcast::channel('chat.{roomID}', function ($user, $roomID) {
-    $chatRoom = \App\Models\ChatRoom::with('serviceRequest')->where('id', $roomID)->first();
-
-    if ($chatRoom->serviceRequest()->client_id == $user->id || $chatRoom->serviceRequest()->worker_id == $user->id) {
-        return true;
-    }
-
     return false;
 });

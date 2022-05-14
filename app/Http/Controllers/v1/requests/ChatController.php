@@ -45,7 +45,7 @@ class ChatController extends Controller
     public function newMessage(Request $request, $roomID): JsonResponse
     {
         $request->validate([
-           'message' => 'required|string',
+            'message' => 'required|string',
         ]);
 
         $user = $request->user();
@@ -58,7 +58,7 @@ class ChatController extends Controller
         $message->chat_room_id = $roomID;
         $message->save();
 
-        broadcast(new NewChatMessage($message));
+        broadcast(new NewChatMessage($message))->toOthers();
 
         return response()->json($message);
     }
