@@ -57,6 +57,7 @@ Route::group([
    'prefix' => 'sub-services',
 ], function() {
     Route::get('/', [SubServicesController::class, 'all']);
+    Route::middleware('auth:sanctum')->get('/me', [SubServicesController::class, 'myServices']);
     Route::middleware('auth:sanctum')->post('/', [SubServicesController::class, 'createSubService']);
     Route::middleware('auth:sanctum')->get('/user-interests', [SubServicesController::class, 'userInterests']);
     Route::get('/{subService}', [SubServicesController::class, 'getSubService']);

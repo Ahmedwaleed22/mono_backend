@@ -16,7 +16,7 @@ class Cors
      */
     public function handle(Request $request, Closure $next)
     {
-//        header('Access-Control-Allow-Origin: *');
+        // header('Access-Control-Allow-Origin: *');
         header("strict-transport-security: max-age=600");
         header('Content-type: application/json;charset=UTF-8');
         header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Authorization, Origin, Accept-Language');

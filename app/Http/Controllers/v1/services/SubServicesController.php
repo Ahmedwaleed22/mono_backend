@@ -6,6 +6,7 @@ use App\Http\Controllers\v1\Controller;
 use App\Models\Service;
 use App\Models\ServiceRequest;
 use App\Models\SubService;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -90,5 +91,11 @@ class SubServicesController extends Controller
                         ->getRelation('service')
                         ->getRelation('subServices');
         return response()->json($subServices);
+    }
+
+    public function myServices(Request $request) {
+        $user = $request->user();
+        $subService = SubService::where('user_id', $user->id)->get();
+        return response()->json($subService);
     }
 }

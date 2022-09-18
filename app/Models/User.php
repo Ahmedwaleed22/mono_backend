@@ -73,4 +73,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'followings', 'followed_id', 'follower_id');
     }
+
+    public function subServices() {
+        return $this->hasMany(SubService::class);
+    }
 }
